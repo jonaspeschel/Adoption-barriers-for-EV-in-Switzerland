@@ -1,3 +1,13 @@
+
+#'Style guide:
+# 1) Copyright statement comment
+# 2) Author comment
+# 3) File description comment, including purpose of program, inputs, and outputs
+# 4) source() and library() statements
+# 5) Function definitions
+# 6) Executed statements, if applicable (e.g., print, plot)
+
+
 ############################ Setup of environment
 #The workspace path needs to be changed upon initial use of this code
 setwd("~/polybox/Jonas Peschel - Master Thesis Share/05 Data/Adoption-barriers-for-EV-in-Switzerland")
@@ -12,7 +22,7 @@ source("data_import.R")
 
 
 ######################## descriptive statistics
-#installation of package, if required:
+# installation of package, if required:
 #install.packages("dplyr")
 library(dplyr)
 
