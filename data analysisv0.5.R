@@ -140,18 +140,12 @@ describe(d_noSL1$Q5_age)
 #' group 4: age 65-79
 #' group 5: age 80 and above
 
-mutate(d_noSL12 , age_group)
-?mutate
-mtcars
-as_ti
-mtcars %>% as_tibble() %>% mutate(
-  cyl2 = cyl * 2,
-  cyl4 = cyl2 * 2
-)
-
 
 #setup of data frame for age
-#d_age = 
+#each column has the count of occurences in the respective age group
+age_group_ID <- 1:5
+age_group_ranges <- c("18-24", "25-44", "45-64", "65-79", "80 and above")
+d_age = tibble("Age group ID" = age_group_ID, "Age Groups" = age_group_ranges, "Survey"=NA, "2015 Mobility Census"=NA)
 
 ##################### plotting of data
 install.packages("ggplot2")
