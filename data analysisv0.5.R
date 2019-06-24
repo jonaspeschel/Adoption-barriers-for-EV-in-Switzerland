@@ -105,14 +105,14 @@ for (i in 1:length(d$StartDate)){
 #soft launch 1: 2019-05-21 until 2019-05-23, n=42
 #soft launch 2: 2019-05-27 until 2019-05-28, n=21
 #full launch: 2019-05-30 until 2019-06-05, n=280
-d.noSL1 <- d[-c(1:42), ]
-d.noSL12 <- d[-c(1:63), ]
+d_noSL1 <- d[-c(1:42), ]
+d_noSL12 <- d[-c(1:63), ]
 
 #removal of values by recording date
 #for (i in 1:length(d$StartDate)){
 #      if(("2019-05-21"<=d$RecordedDate[i])&(d$RecordedDate[i]<="2019-05-23")){
 #       print(d$RecordedDate[i])}
-#       d.noSF1[c(i), ] <- d[c(i), ]
+#       d_noSF1[c(i), ] <- d[c(i), ]
 #}
 
 ######################## descriptive statistics
@@ -126,11 +126,11 @@ library(Hmisc)
 
 #gender
 # female = 0 | male = 1 | other = 2
-describe(d.noSL1$Q4_gender) 
+describe(d_noSL1$Q4_gender) 
 
 #age
 #age in years as an integer number
-describe(d.noSL1$Q5_age)
+describe(d_noSL1$Q5_age)
 
 #age groups are set up in accordance to the groups in the 2015 Swiss mobility survey:
 #' not used, but used in mobility survey: age 6-17
@@ -140,7 +140,7 @@ describe(d.noSL1$Q5_age)
 #' group 4: age 65-79
 #' group 5: age 80 and above
 
-mutate(d.noSL12 , age_group)
+mutate(d_noSL12 , age_group)
 ?mutate
 mtcars
 as_ti
@@ -148,6 +148,10 @@ mtcars %>% as_tibble() %>% mutate(
   cyl2 = cyl * 2,
   cyl4 = cyl2 * 2
 )
+
+
+#setup of data frame for age
+#d_age = 
 
 ##################### plotting of data
 install.packages("ggplot2")
