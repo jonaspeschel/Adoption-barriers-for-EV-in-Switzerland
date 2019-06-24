@@ -140,6 +140,15 @@ describe(d.noSL1$Q5_age)
 #' group 4: age 65-79
 #' group 5: age 80 and above
 
+mutate(d.noSL12 , age_group)
+?mutate
+mtcars
+as_ti
+mtcars %>% as_tibble() %>% mutate(
+  cyl2 = cyl * 2,
+  cyl4 = cyl2 * 2
+)
+
 ##################### plotting of data
 install.packages("ggplot2")
 library(ggplot2)
