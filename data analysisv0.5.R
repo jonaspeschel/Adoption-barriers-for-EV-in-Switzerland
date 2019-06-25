@@ -56,8 +56,17 @@ d_age <- describe(d_noSL1$Q5_age) # age in years as an integer number
 # setup of data frame for age
 # each column has the count of occurences in the respective age group
 age_group_ID <- 1:5
-age_group_ranges <- c("18-24", "25-44", "45-64", "65-79", "80 and above")
-d_age = tibble("Age group ID" = age_group_ID, "Age Groups" = age_group_ranges, "Survey"=NA, "2015 Mobility Census"=NA)
+age_group_ranges <- c("18-24", 
+                      "25-44", 
+                      "45-64", 
+                      "65-79", 
+                      "80 and above"
+                      )
+d_age = tibble(        "Age group ID" = age_group_ID, 
+                         "Age Groups" = age_group_ranges, 
+                             "Survey" = NA, 
+               "2015 Mobility Census" = NA
+               )
 
 # filling in age groups
 age_group_counter_18_24 <- as.integer(0) # initializes age counter for age 18-24
@@ -88,31 +97,24 @@ for (i in 1:n_no_soft_launch_1){
   }
 }
 
+d_age$Survey[1:5] <- c(age_group_counter_18_24, 
+                       age_group_counter_25_44, 
+                       age_group_counter_45_64, 
+                       age_group_counter_65_79, 
+                       age_group_counter_80plus
+                       )
+d_age <- mutate(d_age, "Percentage of Survey" = d_age$Survey / sum(d_age$Survey))
+
 # calculation validity check
 # print("the number of participants is")
 # print(length(d_noSL1$Q5_age))
 # print("the total number of counted ages is")
 # print(age_group_counter_18_24 + age_group_counter_25_44 + age_group_counter_45_64 + age_group_counter_65_79 + age_group_counter_80plus)
 
-# test code below
-print("participant has the age")
-print(d_noSL1$Q5_age[1])
-head(d_noSL1)
-head(n_no_soft_launch_1)
-head(n_all)
 
-# add column for age group assignment
-# todo: add the column after "age" column
-# test: mutate of d_age
-mutate(d_age, "test")
-head(d_age)
-mutate_at()
-?mutate_at
-
-d_noSL1 <- mutate(d_noSL1, "Age group")
-head(d_noSL1)
-
-##################### plotting of data
+#####################
+# plotting of data
+#####################
 
 
 op <- par(mfrow = c(3, 3))
