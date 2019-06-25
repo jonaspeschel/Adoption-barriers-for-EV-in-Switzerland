@@ -102,8 +102,22 @@ d_age$Survey[1:5] <- c(age_group_counter_18_24,
                        age_group_counter_45_64, 
                        age_group_counter_65_79, 
                        age_group_counter_80plus
-                       )
+)
+
+d_age$`2015 Mobility Census`[1:5] <- c(4541,
+                                       13864,
+                                       18209,
+                                       9559,
+                                       2463
+) # data from 2015 mobility census.
+
+# Percentage of total calculation
 d_age <- mutate(d_age, "Percentage of Survey" = d_age$Survey / sum(d_age$Survey))
+d_age <- mutate(d_age, "Percentage of 2015 Mobility Census" = d_age$`2015 Mobility Census` / sum(d_age$`2015 Mobility Census`))
+
+# save output as csv file
+write.csv(d_age, file = "age.csv", row.names = FALSE)
+
 
 # calculation validity check
 # print("the number of participants is")
