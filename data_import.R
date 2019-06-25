@@ -101,6 +101,11 @@ d_noSL1 <- d[-c(1:42), ]
 d_noSL1 <- as_tibble(d_noSL1)
 d_noSL12 <- d[-c(1:63), ]
 
+# definition of data length
+n_all <- length(d$StartDate)
+n_no_soft_launch_1 <- length(d_noSL1$StartDate)
+n_no_soft_launch_1_and_2 <- length(d_noSL12$StartDate)
+
 #removal of values by recording date
 #for (i in 1:length(d$StartDate)){
 #      if(("2019-05-21"<=d$RecordedDate[i])&(d$RecordedDate[i]<="2019-05-23")){

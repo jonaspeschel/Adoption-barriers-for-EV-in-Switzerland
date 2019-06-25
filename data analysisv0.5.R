@@ -8,7 +8,9 @@
 # 6) Executed statements, if applicable (e.g., print, plot)
 
 
-####################### workspace setup
+######################
+# workspace setup
+######################
 #The workspace path needs to be changed upon initial use of this code
 setwd("~/polybox/Jonas Peschel - Master Thesis Share/05 Data/Adoption-barriers-for-EV-in-Switzerland")
 getwd()
@@ -16,26 +18,32 @@ getwd()
 #clearing work environment
 rm(list=ls())
 
-
-###################### data import
-source("data_import.R")
-
-###################### library statements
-
+######################
+# library statements
+######################
+library(ggplot2) # if package is not installed: install.packages("ggplot2")
+library(lattice) # if package is not installed: install.packages("lattice")
+library(survival) # if package is not installed: install.packages("survival")
+library(Formula) # if package is not installed: install.packages("Formula")
 library(Hmisc) # if package is not installed: install.packages("Hmisc")
 library(dplyr) # if package is not installed: install.packages("dplyr")
-library(ggplot2) # if package is not installed: install.packages("ggplot2")
 
-######################## descriptive statistics
 
+######################
+# data import
+######################
+source("data_import.R")
+
+
+######################
+# descriptive statistics
+######################
 
 # gender
-# female = 0 | male = 1 | other = 2
-describe(d_noSL1$Q4_gender) 
+d_gender <- describe(d_noSL1$Q4_gender) # female = 0 | male = 1 | other = 2
 
 # age
-# age in years as an integer number
-describe(d_noSL1$Q5_age)
+d_age <- describe(d_noSL1$Q5_age) # age in years as an integer number
 
 # age groups are set up in accordance to the groups in the 2015 Swiss mobility survey:
 #' not used, but used in mobility survey: age 6-17
@@ -45,12 +53,53 @@ describe(d_noSL1$Q5_age)
 #' group 4: age 65-79
 #' group 5: age 80 and above
 
-
 # setup of data frame for age
 # each column has the count of occurences in the respective age group
 age_group_ID <- 1:5
 age_group_ranges <- c("18-24", "25-44", "45-64", "65-79", "80 and above")
 d_age = tibble("Age group ID" = age_group_ID, "Age Groups" = age_group_ranges, "Survey"=NA, "2015 Mobility Census"=NA)
+
+# filling in age groups
+age_group_counter_18_24 <- as.integer(0) # initializes age counter for age 18-24
+age_group_counter_25_44 <- as.integer(0) # initializes age counter for age 25-44
+age_group_counter_45_64 <- as.integer(0) # initializes age counter for age 34-64
+age_group_counter_65_79 <- as.integer(0) # initializes age counter for age 65-79
+age_group_counter_80plus <- as.integer(0) # initializes age counter for age 80 and above
+
+for (i in 1:n_no_soft_launch_1){
+  if ((18 <= d_noSL1$Q5_age[i]) & (d_noSL1$Q5_age[i] <= 24)){
+    age_group_counter_18_24 <- 1 + age_group_counter_18_24
+  }
+  
+  if ((25 <= d_noSL1$Q5_age[i]) & (d_noSL1$Q5_age[i] <= 44)){
+    age_group_counter_25_44 <- 1 + age_group_counter_25_44
+  }
+  
+  if ((45 <= d_noSL1$Q5_age[i]) & (d_noSL1$Q5_age[i] <= 64)){
+    age_group_counter_45_64 <- 1 + age_group_counter_45_64
+  }
+  
+  if ((65 <= d_noSL1$Q5_age[i]) & (d_noSL1$Q5_age[i] <= 79)){
+    age_group_counter_65_79 <- 1 + age_group_counter_65_79
+  }
+  
+  if ((80 <= d_noSL1$Q5_age[i]) & (d_noSL1$Q5_age[i] <= 120)){
+    age_group_counter_80plus <- 1 + age_group_counter_80plus
+  }
+}
+
+# calculation validity check
+# print("the number of participants is")
+# print(length(d_noSL1$Q5_age))
+# print("the total number of counted ages is")
+# print(age_group_counter_18_24 + age_group_counter_25_44 + age_group_counter_45_64 + age_group_counter_65_79 + age_group_counter_80plus)
+
+# test code below
+print("participant has the age")
+print(d_noSL1$Q5_age[1])
+head(d_noSL1)
+head(n_no_soft_launch_1)
+head(n_all)
 
 # add column for age group assignment
 # todo: add the column after "age" column
