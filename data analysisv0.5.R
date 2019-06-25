@@ -130,12 +130,14 @@ write.csv(d_age, file = "age.csv", row.names = FALSE)
 # plotting of data
 #####################
 
+ggplot(data = d_age, mapping = aes(x = d_age$`Age Groups`, y = d_age$`Percentage of Survey`)) + geom_col()
+ggsave("age.png", width = 5, height = 5)
 
 op <- par(mfrow = c(3, 3))
 
 
 hist(d$'Q18_PT-spend')
-
+hist(d_age$`Percentage of Survey`)
 
 hist(d$'Q2_lang-DE')
 hist(d[[10]])
