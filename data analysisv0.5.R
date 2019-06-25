@@ -251,9 +251,13 @@ write.csv(d_region, file = "d_region.csv", row.names = FALSE)
 # plotting of data
 #####################
 
+# plotting of age distributions
 ggplot(data = d_age, mapping = aes(x = d_age$`Age Groups`, y = d_age$`Percentage of Survey`)) + geom_col()
 ggsave("age.png", width = 5, height = 5)
-?geom_col
+
+# plotting of region distributions
+ggplot(data = d_region, mapping = aes(x = d_region$`Region Groups`, y = d_region$`Percentage of Survey`)) + geom_col()
+ggsave("region.png", width = 5, height = 5)
 
 op <- par(mfrow = c(3, 3))
 
