@@ -132,6 +132,7 @@ write.csv(d_age, file = "age.csv", row.names = FALSE)
 
 ggplot(data = d_age, mapping = aes(x = d_age$`Age Groups`, y = d_age$`Percentage of Survey`)) + geom_col()
 ggsave("age.png", width = 5, height = 5)
+?geom_col
 
 op <- par(mfrow = c(3, 3))
 
