@@ -32,7 +32,7 @@ library(dplyr) # if package is not installed: install.packages("dplyr")
 ######################
 # data import
 ######################
-source("data_import.R")
+source("source/data_import.R")
 
 
 ######################
