@@ -41,11 +41,75 @@ source("data_import.R")
 
 # 1) gender
 ##########################################
-d_gender <- describe(d_noSL1$Q4_gender) # female = 0 | male = 1 | other = 2
+# d_gender <- describe(d_noSL1$Q4_gender) # female = 0 | male = 1 | other = 2
+
+# gender groups are defined as male, female and 'other'
+#' group 1: male
+#' group 2: female
+#' group 3: other
+
+# setup of data frame
+# each column has the count of occurences in the respective age group
+gender_group_ID <- 1:3
+gender_group_ranges <- c("Male", 
+                      "Female", 
+                      "Other"
+)
+d_gender = tibble(        "Gender group ID" = gender_group_ID, 
+                       "Gender Groups" = gender_group_ranges, 
+                       "Survey" = NA, 
+                       "2015 Mobility Census" = NA
+)
+
+# initializing groups
+gender_group_counter_male <- as.integer(0) # initializes counter for male. Qualtrics coding: 1
+gender_group_counter_female <- as.integer(0) # initializes counter for female. Qualtrics coding: 0
+gender_group_counter_other <- as.integer(0) # initializes counter for other. Qualtrics coding: 2
+
+# counting occurences for each group
+for (i in 1:n_no_soft_launch_1){
+  if (d_noSL1$Q4_gender[i] == 1){
+    gender_group_counter_male <- 1 + gender_group_counter_male
+  }
+  if (d_noSL1$Q4_gender[i] == 0){
+    gender_group_counter_female <- 1 + gender_group_counter_female
+  }
+  if (d_noSL1$Q4_gender[i] == 2){
+    gender_group_counter_other <- 1 + gender_group_counter_other
+  }
+}
+
+# writing counts for each group into dataset
+d_gender$Survey[1:3] <- c(gender_group_counter_male,
+                          gender_group_counter_female,
+                          gender_group_counter_other
+)
+
+# writing counts from 2015 mobility census for each group into the dataset
+d_gender$`2015 Mobility Census`[1:3] <- c(27943,
+                                          29147,
+                                          0
+) # data from 2015 mobility census.
+
+# Percentage of total calculation
+d_gender <- mutate(d_gender, "Percentage of Survey" = d_gender$Survey / sum(d_gender$Survey))
+d_gender <- mutate(d_gender, "Percentage of 2015 Mobility Census" = d_gender$`2015 Mobility Census` / sum(d_gender$`2015 Mobility Census`))
+
+# save output as csv file
+write.csv(d_gender, file = "Output/d_gender.csv", row.names = FALSE)
+
+# variable cleanup
+rm(gender_group_ID,
+   gender_group_ranges,
+   d_gender,
+   gender_group_counter_male,
+   gender_group_counter_female,
+   gender_group_counter_other
+   )
 
 # 2) age
 ##########################################
-d_age <- describe(d_noSL1$Q5_age) # age in years as an integer number
+# d_age <- describe(d_noSL1$Q5_age) # age in years as an integer number
 
 # age groups are set up in accordance to the groups in the 2015 Swiss mobility survey:
 #' not used, but used in mobility survey: age 6-17
@@ -70,14 +134,14 @@ d_age = tibble(        "Age group ID" = age_group_ID,
                "2015 Mobility Census" = NA
                )
 
-# initializing age groups
+# initializing groups
 age_group_counter_18_24 <- as.integer(0) # initializes age counter for age 18-24
 age_group_counter_25_44 <- as.integer(0) # initializes age counter for age 25-44
 age_group_counter_45_64 <- as.integer(0) # initializes age counter for age 34-64
 age_group_counter_65_79 <- as.integer(0) # initializes age counter for age 65-79
 age_group_counter_80plus <- as.integer(0) # initializes age counter for age 80 and above
 
-# counting age occurences for each age group
+# counting occurences for each group
 for (i in 1:n_no_soft_launch_1){
   if ((18 <= d_noSL1$Q5_age[i]) & (d_noSL1$Q5_age[i] <= 24)){
     age_group_counter_18_24 <- 1 + age_group_counter_18_24
@@ -127,14 +191,18 @@ d_age <- mutate(d_age, "Percentage of Survey" = d_age$Survey / sum(d_age$Survey)
 d_age <- mutate(d_age, "Percentage of 2015 Mobility Census" = d_age$`2015 Mobility Census` / sum(d_age$`2015 Mobility Census`))
 
 # save output as csv file
-write.csv(d_age, file = "d_age.csv", row.names = FALSE)
+write.csv(d_age, file = "Output/d_age.csv", row.names = FALSE)
 
 # variable cleanup
-rm(age_group_counter_18_24,
+rm(d_age,
+   age_group_ID,
+   age_group_ranges,
+   age_group_counter_18_24,
    age_group_counter_25_44,
    age_group_counter_45_64,
    age_group_counter_65_79,
-   age_group_counter_80plus)
+   age_group_counter_80plus
+   )
 
 # 3) regions
 ##########################################
@@ -252,7 +320,7 @@ d_region <- mutate(d_region, "Percentage of Survey" = d_region$Survey / sum(d_re
 d_region <- mutate(d_region, "Percentage of 2015 Mobility Census" = d_region$`2015 Mobility Census` / sum(d_region$`2015 Mobility Census`))
 
 # save output as csv file
-write.csv(d_region, file = "d_region.csv", row.names = FALSE)
+write.csv(d_region, file = "Output/d_region.csv", row.names = FALSE)
 
 #####################
 # plotting of data
