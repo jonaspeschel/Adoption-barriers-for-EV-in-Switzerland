@@ -51,6 +51,8 @@ source("source/regions.R")
 # 4) income
 source("source/income.R")
 
+# 5) EV driving experience
+source("source/ev_experience.R")
 
 #####################
 # plotting of data
