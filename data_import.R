@@ -3,14 +3,12 @@
 #install.packages("readr")
 
 library(readr)
-d <- read_csv("survey v4.4-data for R.csv", col_types = cols(
-  IPAddress = col_skip(), 
+d <- read_csv("data_raw.csv", col_types = cols(
   Q1_consent = col_integer(), 
   StartDate = col_datetime(format = "%Y-%m-%d %H:%M:%S"),
   EndDate = col_datetime(format = "%Y-%m-%d %H:%M:%S"),
   "Duration (in seconds)" = col_integer(),
   Status = col_skip(),
-  IPAddress = col_skip(),
   Progress = col_skip(),
   Finished = col_skip(),
   RecordedDate = col_datetime(format = "%Y-%m-%d %H:%M:%S"),
@@ -112,3 +110,8 @@ n_no_soft_launch_1_and_2 <- length(d_noSL12$StartDate)
 #       print(d$RecordedDate[i])}
 #       d_noSF1[c(i), ] <- d[c(i), ]
 #}
+
+# writing output in .csv files
+write.csv(d, file = "d.csv", row.names = FALSE)
+write.csv(d_noSL1, file = "d_noSL1.csv", row.names = FALSE)
+write.csv(d_noSL12, file = "d_noSL12.csv", row.names = FALSE)

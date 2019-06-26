@@ -129,6 +129,13 @@ d_age <- mutate(d_age, "Percentage of 2015 Mobility Census" = d_age$`2015 Mobili
 # save output as csv file
 write.csv(d_age, file = "d_age.csv", row.names = FALSE)
 
+# variable cleanup
+rm(age_group_counter_18_24,
+   age_group_counter_25_44,
+   age_group_counter_45_64,
+   age_group_counter_65_79,
+   age_group_counter_80plus)
+
 # 3) regions
 ##########################################
 
