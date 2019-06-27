@@ -1,65 +1,157 @@
-# 1) gender
+# 5) EV driving experience
 ##########################################
 
-# gender groups are defined as male, female and 'other'
-#' group 1: male
-#' group 2: female
-#' group 3: other
+# EV experience categories are defined below. Behind each category there is the Qualtrics coding value
+# Electric car	1
+# Hybrid car: Pure hybrid	2
+# Hybrid car: Plug-in hybrid	3
+# Hybrid car: Range Extender vehicle	4
+# Electric motorcycle	5
+# Electric bicycle	6
+# Electric scooter	7
+# Other	8
+# None	0
+# Don't know	-1
+
 
 # setup of data frame
-# each column has the count of occurences in the respective age group
-gender_group_ID <- 1:3
-gender_group_ranges <- c("Male", 
-                         "Female", 
-                         "Other"
+# each column has the count of occurences in the respective group
+EV_experience_group_ID <- 1:10
+EV_experience_group_ranges <- c("Electric car", 
+                                "Hybrid car: Pure hybrid",
+                                "Hybrid car: Plug-in hybrid",
+                                "Hybrid car: Range Extender vehicle",
+                                "Electric motorcycle",
+                                "Electric bicycle",
+                                "Electric scooter",
+                                "Other",
+                                "None",
+                                "Don't know"
+
 )
-d_gender = tibble(        "Gender group ID" = gender_group_ID, 
-                          "Gender Groups" = gender_group_ranges, 
+d_EV_experience = tibble(        "EV experience group ID" = EV_experience_group_ID, 
+                          "EV experience Groups" = EV_experience_group_ranges, 
                           "Survey" = NA, 
-                          "2015 Mobility Census" = NA
 )
 
-# initializing groups
-gender_group_counter_male <- as.integer(0) # initializes counter for male. Qualtrics coding: 1
-gender_group_counter_female <- as.integer(0) # initializes counter for female. Qualtrics coding: 0
-gender_group_counter_other <- as.integer(0) # initializes counter for other. Qualtrics coding: 2
+# initializing counters for each item
+EV_experience_group_counter_electric_car <- as.integer(0) # coded 1
+EV_experience_group_counter_hybrid_pure <- as.integer(0) # coded 2
+EV_experience_group_counter_hybrid_plug_in <- as.integer(0) # coded 3
+EV_experience_group_counter_hybrid_range_extender <- as.integer(0) # coded 4
+EV_experience_group_counter_electric_motorcycle <- as.integer(0) # coded 5
+EV_experience_group_counter_electric_bicycle <- as.integer(0) # coded 6
+EV_experience_group_counter_electric_scooter <- as.integer(0) # coded 7
+EV_experience_group_counter_other <- as.integer(0) # coded 8
+EV_experience_group_counter_none <- as.integer(0) # coded 0
+EV_experience_group_counter_dont_know <- as.integer(0) # coded -1
+
 
 # counting occurences for each group
 for (i in 1:n_no_soft_launch_1){
-  if (d_noSL1$Q4_gender[i] == 1){
-    gender_group_counter_male <- 1 + gender_group_counter_male
+  if (
+    ((grepl("1", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE) &
+    ((grepl("-1", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == FALSE)
+  )
+       {
+    EV_experience_group_counter_electric_car <- 1 + EV_experience_group_counter_electric_car
   }
-  if (d_noSL1$Q4_gender[i] == 0){
-    gender_group_counter_female <- 1 + gender_group_counter_female
+  
+  if (
+    ((grepl("2", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE)
+  )
+  {
+    EV_experience_group_counter_hybrid_pure <- 1 + EV_experience_group_counter_hybrid_pure
   }
-  if (d_noSL1$Q4_gender[i] == 2){
-    gender_group_counter_other <- 1 + gender_group_counter_other
+  
+  if (
+    ((grepl("3", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE)
+  )
+  {
+    EV_experience_group_counter_hybrid_plug_in <- 1 + EV_experience_group_counter_hybrid_plug_in
+  }
+  
+  if (
+    ((grepl("4", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE)
+  )
+  {
+    EV_experience_group_counter_hybrid_range_extender <- 1 + EV_experience_group_counter_hybrid_range_extender
+  }
+  
+  if (
+    ((grepl("5", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE)
+  )
+  {
+    EV_experience_group_counter_electric_motorcycle <- 1 + EV_experience_group_counter_electric_motorcycle
+  }
+  
+  if (
+    ((grepl("6", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE)
+  )
+  {
+    EV_experience_group_counter_electric_bicycle <- 1 + EV_experience_group_counter_electric_bicycle
+  }
+  
+  if (
+    ((grepl("7", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE)
+  )
+  {
+    EV_experience_group_counter_electric_scooter <- 1 + EV_experience_group_counter_electric_scooter
+  }
+  
+  if (
+    ((grepl("8", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE)
+  )
+  {
+    EV_experience_group_counter_other <- 1 + EV_experience_group_counter_other
+  }
+  
+  if (
+    ((grepl("0", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE)
+  )
+  {
+    EV_experience_group_counter_none <- 1 + EV_experience_group_counter_none
+  }
+  
+  if (
+    ((grepl("-1", d_noSL1$`Q12_EV-experience`[i], fixed = TRUE)) == TRUE)
+  )
+  {
+    EV_experience_group_counter_dont_know <- 1 + EV_experience_group_counter_dont_know
   }
 }
 
 # writing counts for each group into dataset
-d_gender$Survey[1:3] <- c(gender_group_counter_male,
-                          gender_group_counter_female,
-                          gender_group_counter_other
+d_EV_experience$Survey[1:10] <- c(EV_experience_group_counter_electric_car,
+                           EV_experience_group_counter_hybrid_pure,
+                           EV_experience_group_counter_hybrid_plug_in,
+                           EV_experience_group_counter_hybrid_range_extender,
+                           EV_experience_group_counter_electric_motorcycle,
+                           EV_experience_group_counter_electric_bicycle,
+                           EV_experience_group_counter_electric_scooter,
+                           EV_experience_group_counter_other,
+                           EV_experience_group_counter_none,
+                           EV_experience_group_counter_dont_know
 )
 
-# writing counts from 2015 mobility census for each group into the dataset
-d_gender$`2015 Mobility Census`[1:3] <- c(27943,
-                                          29147,
-                                          0
-) # data from 2015 mobility census.
 
 # Percentage of total calculation
-d_gender <- mutate(d_gender, "Percentage of Survey" = d_gender$Survey / sum(d_gender$Survey))
-d_gender <- mutate(d_gender, "Percentage of 2015 Mobility Census" = d_gender$`2015 Mobility Census` / sum(d_gender$`2015 Mobility Census`))
+d_EV_experience <- mutate(d_EV_experience, "Percentage of Survey" = d_EV_experience$Survey / sum(d_EV_experience$Survey))
 
 # save output as csv file
-write.csv(d_gender, file = "output/d_gender.csv", row.names = FALSE)
+write.csv(d_EV_experience, file = "output/d_EV_experience.csv", row.names = FALSE)
 
 # variable cleanup
-rm(gender_group_ID,
-   gender_group_ranges,
-   gender_group_counter_male,
-   gender_group_counter_female,
-   gender_group_counter_other
+rm(EV_experience_group_ID,
+   EV_experience_group_ranges,
+   EV_experience_group_counter_electric_car,
+   EV_experience_group_counter_hybrid_pure,
+   EV_experience_group_counter_hybrid_plug_in,
+   EV_experience_group_counter_hybrid_range_extender,
+   EV_experience_group_counter_electric_motorcycle,
+   EV_experience_group_counter_electric_bicycle,
+   EV_experience_group_counter_electric_scooter,
+   EV_experience_group_counter_other,
+   EV_experience_group_counter_none,
+   EV_experience_group_counter_dont_know
 )
