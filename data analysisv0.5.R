@@ -57,6 +57,9 @@ source("source/ev_experience.R")
 # 6) EV use
 source("source/ev_use.R")
 
+# 7) mobility usage
+source("source/mobility_usage.R")
+
 #####################
 # plotting of data
 #####################
