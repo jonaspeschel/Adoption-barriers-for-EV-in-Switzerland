@@ -60,6 +60,9 @@ source("source/ev_use.R")
 # 7) mobility usage
 source("source/mobility_usage.R")
 
+# 8) Public transport subscriptions
+source("source/pt_subscr.R")
+
 #####################
 # plotting of data
 #####################
