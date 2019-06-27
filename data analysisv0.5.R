@@ -66,6 +66,9 @@ source("source/pt_subscr.R")
 # 9) # EV battery range for commutes
 source("source/ev_range_commute.R")
 
+# 10) # EV battery range for all ranges
+source("source/ev_range_all.R")
+
 #####################
 # plotting of data
 #####################
