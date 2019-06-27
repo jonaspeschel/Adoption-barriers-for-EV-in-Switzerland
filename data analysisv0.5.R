@@ -63,6 +63,9 @@ source("source/mobility_usage.R")
 # 8) Public transport subscriptions
 source("source/pt_subscr.R")
 
+# 9) # EV battery range for commutes
+source("source/ev_range_commute.R")
+
 #####################
 # plotting of data
 #####################
