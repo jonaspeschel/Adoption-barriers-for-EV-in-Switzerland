@@ -78,6 +78,9 @@ source("source/mob_subscr_pi.R")
 # Q40 EV advantages
 source("source/ev_adv.R")
 
+# Q41 EV disadvantages
+source("source/ev_disadv.R")
+
 #####################
 # plotting of data
 #####################
