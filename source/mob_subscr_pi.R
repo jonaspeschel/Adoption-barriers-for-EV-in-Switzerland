@@ -70,46 +70,46 @@ mob_subscr_pi5_group_counter_1 <- as.integer(0) # coded 1
 mob_subscr_pi5_group_counter_dont_know <- as.integer(0) # coded -1
 
 # counting occurences for each group
-for (i in 1:n_no_soft_launch_1){
+for (i in 1:n_no_soft_launch_1_and_2){
 # pi 1/5
   if (
-    ((grepl("5", d_noSL1$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("5", d_noSL12$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi1_group_counter_5 <- 1 + mob_subscr_pi1_group_counter_5
   }
   
   if (
-    ((grepl("4", d_noSL1$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("4", d_noSL12$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi1_group_counter_4 <- 1 + mob_subscr_pi1_group_counter_4
   }
   
   if (
-    ((grepl("3", d_noSL1$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("3", d_noSL12$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi1_group_counter_3 <- 1 + mob_subscr_pi1_group_counter_3
   }
   
   if (
-    ((grepl("2", d_noSL1$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("2", d_noSL12$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi1_group_counter_2 <- 1 + mob_subscr_pi1_group_counter_2
   }
   
   if (
-    ((grepl("1", d_noSL1$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE) &
-    ((grepl("-1", d_noSL1$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == FALSE)
+    ((grepl("1", d_noSL12$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE) &
+    ((grepl("-1", d_noSL12$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == FALSE)
   )
   {
     mob_subscr_pi1_group_counter_1 <- 1 + mob_subscr_pi1_group_counter_1
   }
   
   if (
-    ((grepl("-1", d_noSL1$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("-1", d_noSL12$`Q30_mob-subscr1-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi1_group_counter_dont_know <- 1 + mob_subscr_pi1_group_counter_dont_know
@@ -117,43 +117,43 @@ for (i in 1:n_no_soft_launch_1){
   
   # pi 2/5
   if (
-    ((grepl("5", d_noSL1$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("5", d_noSL12$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi2_group_counter_5 <- 1 + mob_subscr_pi2_group_counter_5
   }
   
   if (
-    ((grepl("4", d_noSL1$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("4", d_noSL12$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi2_group_counter_4 <- 1 + mob_subscr_pi2_group_counter_4
   }
   
   if (
-    ((grepl("3", d_noSL1$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("3", d_noSL12$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi2_group_counter_3 <- 1 + mob_subscr_pi2_group_counter_3
   }
   
   if (
-    ((grepl("2", d_noSL1$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("2", d_noSL12$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi2_group_counter_2 <- 1 + mob_subscr_pi2_group_counter_2
   }
   
   if (
-    ((grepl("1", d_noSL1$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE) &
-    ((grepl("-1", d_noSL1$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == FALSE)
+    ((grepl("1", d_noSL12$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE) &
+    ((grepl("-1", d_noSL12$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == FALSE)
   )
   {
     mob_subscr_pi2_group_counter_1 <- 1 + mob_subscr_pi2_group_counter_1
   }
   
   if (
-    ((grepl("-1", d_noSL1$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("-1", d_noSL12$`Q32_mob-subscr2-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi2_group_counter_dont_know <- 1 + mob_subscr_pi2_group_counter_dont_know
@@ -161,43 +161,43 @@ for (i in 1:n_no_soft_launch_1){
   
   # pi 3/5
   if (
-    ((grepl("5", d_noSL1$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("5", d_noSL12$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi3_group_counter_5 <- 1 + mob_subscr_pi3_group_counter_5
   }
   
   if (
-    ((grepl("4", d_noSL1$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("4", d_noSL12$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi3_group_counter_4 <- 1 + mob_subscr_pi3_group_counter_4
   }
   
   if (
-    ((grepl("3", d_noSL1$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("3", d_noSL12$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi3_group_counter_3 <- 1 + mob_subscr_pi3_group_counter_3
   }
   
   if (
-    ((grepl("2", d_noSL1$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("2", d_noSL12$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi3_group_counter_2 <- 1 + mob_subscr_pi3_group_counter_2
   }
   
   if (
-    ((grepl("1", d_noSL1$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE) &
-    ((grepl("-1", d_noSL1$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == FALSE)
+    ((grepl("1", d_noSL12$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE) &
+    ((grepl("-1", d_noSL12$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == FALSE)
   )
   {
     mob_subscr_pi3_group_counter_1 <- 1 + mob_subscr_pi3_group_counter_1
   }
   
   if (
-    ((grepl("-1", d_noSL1$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("-1", d_noSL12$`Q34_mob-subscr3-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi3_group_counter_dont_know <- 1 + mob_subscr_pi3_group_counter_dont_know
@@ -205,43 +205,43 @@ for (i in 1:n_no_soft_launch_1){
   
   # pi 4/5
   if (
-    ((grepl("5", d_noSL1$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("5", d_noSL12$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi4_group_counter_5 <- 1 + mob_subscr_pi4_group_counter_5
   }
   
   if (
-    ((grepl("4", d_noSL1$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("4", d_noSL12$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi4_group_counter_4 <- 1 + mob_subscr_pi4_group_counter_4
   }
   
   if (
-    ((grepl("3", d_noSL1$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("3", d_noSL12$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi4_group_counter_3 <- 1 + mob_subscr_pi4_group_counter_3
   }
   
   if (
-    ((grepl("2", d_noSL1$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("2", d_noSL12$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi4_group_counter_2 <- 1 + mob_subscr_pi4_group_counter_2
   }
   
   if (
-    ((grepl("1", d_noSL1$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE) &
-    ((grepl("-1", d_noSL1$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == FALSE)
+    ((grepl("1", d_noSL12$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE) &
+    ((grepl("-1", d_noSL12$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == FALSE)
   )
   {
     mob_subscr_pi4_group_counter_1 <- 1 + mob_subscr_pi4_group_counter_1
   }
   
   if (
-    ((grepl("-1", d_noSL1$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("-1", d_noSL12$`Q36_mob-subscr4-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi4_group_counter_dont_know <- 1 + mob_subscr_pi4_group_counter_dont_know
@@ -249,43 +249,43 @@ for (i in 1:n_no_soft_launch_1){
   
   # pi 5/5
   if (
-    ((grepl("5", d_noSL1$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("5", d_noSL12$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi5_group_counter_5 <- 1 + mob_subscr_pi5_group_counter_5
   }
   
   if (
-    ((grepl("4", d_noSL1$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("4", d_noSL12$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi5_group_counter_4 <- 1 + mob_subscr_pi5_group_counter_4
   }
   
   if (
-    ((grepl("3", d_noSL1$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("3", d_noSL12$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi5_group_counter_3 <- 1 + mob_subscr_pi5_group_counter_3
   }
   
   if (
-    ((grepl("2", d_noSL1$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("2", d_noSL12$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi5_group_counter_2 <- 1 + mob_subscr_pi5_group_counter_2
   }
   
   if (
-    ((grepl("1", d_noSL1$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE) &
-    ((grepl("-1", d_noSL1$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == FALSE)
+    ((grepl("1", d_noSL12$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE) &
+    ((grepl("-1", d_noSL12$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == FALSE)
   )
   {
     mob_subscr_pi5_group_counter_1 <- 1 + mob_subscr_pi5_group_counter_1
   }
   
   if (
-    ((grepl("-1", d_noSL1$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
+    ((grepl("-1", d_noSL12$`Q38_mob-subscr5-PI`[i], fixed = TRUE)) == TRUE)
   )
   {
     mob_subscr_pi5_group_counter_dont_know <- 1 + mob_subscr_pi5_group_counter_dont_know
@@ -378,3 +378,4 @@ rm(mob_subscr_pi_group_ID,
    mob_subscr_pi5_group_counter_1,
    mob_subscr_pi5_group_counter_dont_know
 )
+
