@@ -75,6 +75,8 @@ source("source/mob_subscr_inter.R")
 # Q30, 32, 34, 36, 38 Mobility subscriptions 1, 2, 3, 4, 5 purchase intent
 source("source/mob_subscr_pi.R")
 
+# Q40 EV advantages
+source("source/ev_adv.R")
 
 #####################
 # plotting of data
