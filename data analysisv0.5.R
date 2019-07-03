@@ -69,6 +69,13 @@ source("source/ev_range_commute.R")
 # 10) # EV battery range for all ranges
 source("source/ev_range_all.R")
 
+# Q27 Mobility subscription interest
+source("source/mob_subscr_inter.R")
+
+# Q30 Mobility subscription 1 purchase intent
+source("source/mob_subscr1_PI.R")
+
+
 #####################
 # plotting of data
 #####################
