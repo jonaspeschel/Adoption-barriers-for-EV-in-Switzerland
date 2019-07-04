@@ -39,34 +39,37 @@ source("source/data_import.R")
 # descriptive statistics
 ######################
 
-# 1) gender
+# Q4 gender
 source("source/gender.R")
 
-# 2) age
+# Q5 age
 source("source/age.R")
 
-# 3) regions
+# Q6 regions
 source("source/regions.R")
 
-# 4) income
+# Q8 income
 source("source/income.R")
 
-# 5) EV driving experience
+# Q12 EV driving experience
 source("source/ev_experience.R")
 
-# 6) EV use
+# Q14 EV use
 source("source/ev_use.R")
 
-# 7) mobility usage
+# Q15 mobility usage
 source("source/mobility_usage.R")
 
-# 8) Public transport subscriptions
+# Q16 Public transport subscriptions
 source("source/pt_subscr.R")
 
-# 9) # EV battery range for commutes
+# Q17-19 mobility spending
+source("source/mobility_spend.R")
+
+# Q24 # EV battery range for commutes
 source("source/ev_range_commute.R")
 
-# 10) # EV battery range for all ranges
+# Q25 # EV battery range for all ranges
 source("source/ev_range_all.R")
 
 # Q27 Mobility subscription interest
