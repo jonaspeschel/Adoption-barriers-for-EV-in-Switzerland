@@ -75,6 +75,9 @@ source("source/ev_range_all.R")
 # Q27 Mobility subscription interest
 source("source/mob_subscr_inter.R")
 
+# Q28 Mobility subscription willingness to pay
+source("source/mob_subscr_wtp.R")
+
 # Q30, 32, 34, 36, 38 Mobility subscriptions 1, 2, 3, 4, 5 purchase intent
 source("source/mob_subscr_pi.R")
 
