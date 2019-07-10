@@ -87,6 +87,9 @@ source("source/ev_adv.R")
 # Q41 EV disadvantages
 source("source/ev_disadv.R")
 
+# Remarks of participants
+source("source/remarks.R")
+
 #####################
 # plotting of data
 #####################
