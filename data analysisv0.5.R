@@ -94,25 +94,5 @@ source("source/remarks.R")
 # plotting of data
 #####################
 
-# plotting of age distributions
-ggplot(data = d_age, mapping = aes(x = d_age$`Age Groups`, y = d_age$`Percentage of Survey`)) + geom_col()
-ggsave("age.png", width = 5, height = 5)
+source("source/plotting.R")
 
-# plotting of region distributions
-ggplot(data = d_region, mapping = aes(x = d_region$`Region Groups`, y = d_region$`Percentage of Survey`)) + geom_col()
-ggsave("region.png", width = 5, height = 5)
-
-op <- par(mfrow = c(3, 3))
-
-
-hist(d$'Q18_PT-spend')
-hist(d_age$`Percentage of Survey`)
-
-hist(d$'Q2_lang-DE')
-hist(d[[10]])
-hist(d[[11]])
-for (i in 10:15){
-hist(d[[i]])
-boxplot(d[[i]])  
-}
-boxplot(d$"Q5_age")
