@@ -8,13 +8,11 @@
 ######################
 # Q5 age
 ######################
-
 plot_age <- ggplot(
   data = d_age, 
-  aes(x = `Age Groups`, y = `Percentage of Survey`),
-  color = d_age$Survey
+  aes(x = `Age Groups`, y = `Percentage of Survey`)
   ) + 
-  geom_bar() +
+  geom_bar(stat="identity") +
   xlab("Age groups") +
   ylab("Percentage of total") +
   ggtitle("Distribution of age in survey")
