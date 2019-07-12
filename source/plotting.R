@@ -8,21 +8,36 @@
 ######################
 # Q5 age
 ######################
-plot_age <- ggplot(
-  data = d_age, 
-  aes(x = `Age Groups`, y = `Percentage of Survey`)
-  ) + 
-  geom_bar(stat="identity") +
-  xlab("Age groups") +
-  ylab("Percentage of total") +
-  ggtitle("Distribution of age in survey")
 
-ggsave("images/plot_age.png", width = 5, height = 5)
+# convert data for plotting
+d_age_melt <- melt(data = d_age, id.vars = "Age Groups",  measure.vars = c("Percentage of Survey", "Percentage of 2015 Mobility Census"))
+d_age_melt$value <- d_age_melt$value*100
+
+# plot data
+plot_age <- ggplot(
+  data = d_age_melt, 
+  aes(x = `Age Groups`, y = value, fill = variable)
+) + 
+  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, ???
+  xlab("Age groups") + # set x axis label
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Age distribution") + # set title
+  scale_fill_brewer(palette = "Blues") # set color pattern
+
+# display plot
+print(plot_age)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_age.png", width = 10, height = 5)
 
 # plotting of region distributions
 ggplot(data = d_region, mapping = aes(x = d_region$`Region Groups`, y = d_region$`Percentage of Survey`)) + geom_col()
-ggsave("region.png", width = 5, height = 5)
 
+# Save the plot as .png file
+ggsave("region.png", plot = plot_age, width = 5, height = 5)
+
+############ old stuf
 op <- par(mfrow = c(3, 3))
 
 
@@ -37,6 +52,7 @@ for (i in 10:15){
   boxplot(d[[i]])  
 }
 boxplot(d$"Q5_age")
+############3 end of old stuff
 
 ######################
 # Q6 regions

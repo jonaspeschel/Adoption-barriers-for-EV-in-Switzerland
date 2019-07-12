@@ -27,7 +27,9 @@ library(survival) # if package is not installed: install.packages("survival")
 library(Formula) # if package is not installed: install.packages("Formula")
 library(Hmisc) # if package is not installed: install.packages("Hmisc")
 library(dplyr) # if package is not installed: install.packages("dplyr")
-
+library(RColorBrewer)  # if package is not installed: install.packages("RColorBrewer")
+library(reshape2) # if package is not installed: install.packages("reshape2")
+library(tidyr) # if package is not installed: install.packages("tidyr")
 
 ######################
 # data import
