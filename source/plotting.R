@@ -6,18 +6,18 @@
 ######################
 
 # convert data for plotting
-d_age_melt <- melt(data = d_age, id.vars = "Age Groups",  measure.vars = c("Percentage of Survey", "Percentage of 2015 Mobility Census"))
-d_age_melt$value <- d_age_melt$value*100
+d_gender_melt <- melt(data = d_gender, id.vars = "Gender Groups",  measure.vars = c("Percentage of Survey", "Percentage of 2015 Mobility Census"))
+d_gender_melt$value <- d_gender_melt$value*100
 
 # plot data
 plot_age <- ggplot(
-  data = d_age_melt, 
-  aes(x = `Age Groups`, y = value, fill = variable)
+  data = d_gender_melt, 
+  aes(x = `Gender Groups`, y = value, fill = variable)
 ) + 
-  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, ???
-  xlab("Age groups") + # set x axis label
+  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Gender groups") + # set x axis label
   ylab("Percentage of total") + # set y axis label
-  ggtitle("Age distribution") + # set title
+  ggtitle("Gender distribution") + # set title
   scale_fill_brewer(palette = "Blues") # set color pattern
 
 # display plot
@@ -25,10 +25,10 @@ print(plot_age)
 dev.off() # removes displayed graphic
 
 # save plot in file
-ggsave("images/plot_age.png", width = 10, height = 5)
+ggsave("images/plot_gender.png", width = 10, height = 5)
 
 # removal of temporary files
-rm(d_age_melt)
+rm(d_gender_melt)
 
 ######################
 # Q5 age
@@ -43,7 +43,7 @@ plot_age <- ggplot(
   data = d_age_melt, 
   aes(x = `Age Groups`, y = value, fill = variable)
 ) + 
-  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, ???
+  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
   xlab("Age groups") + # set x axis label
   ylab("Percentage of total") + # set y axis label
   ggtitle("Age distribution") + # set title
@@ -58,12 +58,6 @@ ggsave("images/plot_age.png", width = 10, height = 5)
 
 # removal of temporary files
 rm(d_age_melt)
-
-# plotting of region distributions
-ggplot(data = d_region, mapping = aes(x = d_region$`Region Groups`, y = d_region$`Percentage of Survey`)) + geom_col()
-
-# Save the plot as .png file
-ggsave("region.png", plot = plot_age, width = 5, height = 5)
 
 ############ old stuf
 op <- par(mfrow = c(3, 3))
@@ -87,29 +81,42 @@ boxplot(d$"Q5_age")
 ######################
 
 # convert data for plotting
-d_age_melt <- melt(data = d_age, id.vars = "Age Groups",  measure.vars = c("Percentage of Survey", "Percentage of 2015 Mobility Census"))
-d_age_melt$value <- d_age_melt$value*100
+d_region_temp <- d_region
+d_region_temp$`Region Groups` <- c(
+  "Lake Geneva", 
+  "Espace Mittelland", 
+  "Northwestern Switzerland", 
+  "Zurich", 
+  "Easter Switzerland",
+  "Central Switzerland",
+  "Ticino"
+)
+d_region_melt <- melt(data = d_region_temp, id.vars = "Region Groups",  measure.vars = c("Percentage of Survey", "Percentage of 2015 Mobility Census"))
+d_region_melt$value <- d_region_melt$value*100
 
 # plot data
-plot_age <- ggplot(
-  data = d_age_melt, 
-  aes(x = `Age Groups`, y = value, fill = variable)
+plot_region <- ggplot(
+  data = d_region_melt, 
+  aes(x = `Region Groups`, y = value, fill = variable)
 ) + 
-  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, ???
-  xlab("Age groups") + # set x axis label
+  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Region groups") + # set x axis label
   ylab("Percentage of total") + # set y axis label
-  ggtitle("Age distribution") + # set title
+  ggtitle("Regional distribution") + # set title
   scale_fill_brewer(palette = "Blues") # set color pattern
 
 # display plot
-print(plot_age)
+print(plot_region)
 dev.off() # removes displayed graphic
 
 # save plot in file
-ggsave("images/plot_age.png", width = 10, height = 5)
+ggsave("images/plot_region.png", width = 10, height = 5)
 
 # removal of temporary files
-rm(d_age_melt)
+rm(
+  d_region_temp,
+  d_region_melt
+   )
 
 ######################
 # Q8 income
@@ -124,7 +131,7 @@ plot_age <- ggplot(
   data = d_age_melt, 
   aes(x = `Age Groups`, y = value, fill = variable)
 ) + 
-  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, ???
+  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
   xlab("Age groups") + # set x axis label
   ylab("Percentage of total") + # set y axis label
   ggtitle("Age distribution") + # set title
