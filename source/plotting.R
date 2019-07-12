@@ -15,7 +15,7 @@ plot_age <- ggplot(
   aes(x = `Gender Groups`, y = value, fill = variable)
 ) + 
   geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
-  xlab("Gender groups") + # set x axis label
+  xlab("Gender groups" ) + # set x axis label
   ylab("Percentage of total") + # set y axis label
   ggtitle("Gender distribution") + # set title
   scale_fill_brewer(palette = "Blues") # set color pattern
@@ -103,7 +103,8 @@ plot_region <- ggplot(
   xlab("Region groups") + # set x axis label
   ylab("Percentage of total") + # set y axis label
   ggtitle("Regional distribution") + # set title
-  scale_fill_brewer(palette = "Blues") # set color pattern
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(axis.text.x = element_text(angle = 90)) # rotates x-axis text by 90 degrees
 
 # display plot
 print(plot_region)
