@@ -101,6 +101,13 @@ plot_region <- ggplot(
 ) + 
   geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
   xlab("Region groups") + # set x axis label
+  scale_x_discrete(limits=c("Lake Geneva", 
+                            "Espace Mittelland", 
+                            "Northwestern Switzerland", 
+                            "Zurich", 
+                            "Easter Switzerland",
+                            "Central Switzerland",
+                            "Ticino")) + # rearrange values on x-axis
   ylab("Percentage of total") + # set y axis label
   ggtitle("Regional distribution") + # set title
   scale_fill_brewer(palette = "Blues") + # set color pattern
