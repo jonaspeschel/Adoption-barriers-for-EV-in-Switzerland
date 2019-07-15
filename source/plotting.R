@@ -124,29 +124,36 @@ rm(
 ######################
 
 # convert data for plotting
-d_age_melt <- melt(data = d_age, id.vars = "Age Groups",  measure.vars = c("Percentage of Survey", "Percentage of 2015 Mobility Census"))
-d_age_melt$value <- d_age_melt$value*100
+d_income_melt <- melt(data = d_income, id.vars = "Income Groups",  measure.vars = c("Percentage of Survey", "Percentage of 2015 Mobility Census"))
+d_income_melt$value <- d_income_melt$value*100
 
 # plot data
-plot_age <- ggplot(
-  data = d_age_melt, 
-  aes(x = `Age Groups`, y = value, fill = variable)
+plot_income <- ggplot(
+  data = d_income_melt, 
+  aes(x = `Income Groups`, y = value, fill = variable, factor(`Income Groups`))
 ) + 
   geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
-  xlab("Age groups") + # set x axis label
+  xlab("Income groups") + # set x axis label
+  scale_x_discrete(limits=c("Below 4'000", 
+                            "4'000 - 8'000", 
+                            "8'000 - 12'000",
+                            "Above 12'000",
+                            "Don't know/no comment")) + # rearrange values on x-axis
   ylab("Percentage of total") + # set y axis label
-  ggtitle("Age distribution") + # set title
-  scale_fill_brewer(palette = "Blues") # set color pattern
+  ggtitle("Income distribution") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(axis.text.x = element_text(angle = 90)) # rotates x-axis text by 90 degrees
+
 
 # display plot
-print(plot_age)
+print(plot_income)
 dev.off() # removes displayed graphic
 
 # save plot in file
-ggsave("images/plot_age.png", width = 10, height = 5)
+ggsave("images/plot_income.png", width = 10, height = 5)
 
 # removal of temporary files
-rm(d_age_melt)
+rm(d_income_melt)
 
 ######################
 # Q12 EV driving experience
