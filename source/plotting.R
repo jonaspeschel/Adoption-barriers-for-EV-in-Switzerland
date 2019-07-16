@@ -206,6 +206,41 @@ rm(d_income_melt)
 # Q40 EV advantages
 ######################
 
+# Convert data for plotting
+d_EV_adv_plot <- d_EV_adv
+d_EV_adv_plot$`Percentage of Survey` <- d_EV_adv_plot$`Percentage of Survey`*100
+
+# plot data
+plot_EV_adv <- ggplot(
+  data = d_EV_adv_plot, 
+  aes(x = `EV advantages groups`, y = `Percentage of Survey`, factor(`EV advantages groups`))
+) + 
+  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("EV advantages choices") + # set x axis label
+  scale_x_discrete(limits=c("Environmental impact",
+                            "Little noise",
+                            "Improved air quality",
+                            "Low CO2 emissions",
+                            "Pleasant driving experience",
+                            "Savings in operating costs",
+                            "Savings in total cost of ownership",
+                            "Other")) + # rearrange values on x-axis
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("EV advantages share of choices") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(axis.text.x = element_text(angle = 90)) # rotates x-axis text by 90 degrees
+
+
+# display plot
+print(plot_EV_adv)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_EV_adv.png", width = 10, height = 5)
+
+# removal of temporary files
+rm(d_EV_adv_plot)
+
 ######################
 # Q41 EV disadvantages
 ######################
