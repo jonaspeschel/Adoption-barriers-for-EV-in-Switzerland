@@ -202,6 +202,47 @@ rm(d_income_melt)
 # Q30, 32, 34, 36, 38 Mobility subscriptions 1, 2, 3, 4, 5 purchase intent
 ######################
 
+# convert data for plotting
+d_mob_subscr_pi_plot <- melt(data = d_mob_subscr_pi, id.vars = "Groups",
+                             measure.vars = c("Subscription 1", 
+                                              "Subscription 2",
+                                              "Subscription 3",
+                                              "Subscription 4",
+                                              "Subscription 5"))
+# plot data
+plot_mob_subscr_pi <- ggplot(
+  data = d_mob_subscr_pi_plot, 
+  aes(x = variable, y = `Groups`, fill = variable, factor(variable))
+) + 
+  geom_count(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Subscriptions") + # set x axis label
+  scale_x_discrete(limits=c("Subscription 1",
+                            "Subscription 2",
+                            "Subscription 3",
+                            "Subscription 4",
+                            "Subscription 5")) + # rearrange values on x-axis
+  scale_y_discrete(limits=c("I do not know",
+                            "1 Not interested at all",
+                            "2 Slightly uninterested",
+                            "3 Neutral",
+                            "4 Interested",
+                            "5 Very interested")) + # rearrange values on y-axis
+  ylab("Relative answer share") + # set y axis label
+  ggtitle("MAAS subscriptions purchase intent") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(axis.text.x = element_text(angle = 90)) # rotates x-axis text by 90 degrees
+
+# display plot
+print(plot_mob_subscr_pi)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_mob_subscr_pi.png", width = 10, height = 5)
+
+# removal of temporary files
+rm(d_mob_subscr_pi_plot,
+   plot_mob_subscr_pi)
+
 ######################
 # Q40 EV advantages
 ######################
