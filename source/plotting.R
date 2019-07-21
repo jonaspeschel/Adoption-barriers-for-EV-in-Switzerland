@@ -242,6 +242,48 @@ ggsave("images/plot_mob_subscr_pi.png", width = 10, height = 5)
 # removal of temporary files
 rm(d_mob_subscr_pi_plot,
    plot_mob_subscr_pi)
+# end of old stuff
+
+# Convert data for plotting
+d_mob_subscr_pi_plot <- melt(data = d_mob_subscr_pi, id.vars = "Groups",
+                             measure.vars = c("Percentage of Subscription 1"))
+d_mob_subscr_pi_plot$value <- d_mob_subscr_pi_plot$value*100
+
+# test without melt
+d_mob_subscr_pi_plot <- d_mob_subscr_pi
+d_mob_subscr_pi_plot$`Percentage of Subscription 1` <- d_mob_subscr_pi_plot$`Percentage of Subscription 1`*100
+d_mob_subscr_pi_plot$`Percentage of Subscription 2` <- d_mob_subscr_pi_plot$`Percentage of Subscription 2`*100
+d_mob_subscr_pi_plot$`Percentage of Subscription 3` <- d_mob_subscr_pi_plot$`Percentage of Subscription 3`*100
+d_mob_subscr_pi_plot$`Percentage of Subscription 4` <- d_mob_subscr_pi_plot$`Percentage of Subscription 4`*100
+d_mob_subscr_pi_plot$`Percentage of Subscription 5` <- d_mob_subscr_pi_plot$`Percentage of Subscription 5`*100
+
+# plot data
+plot_mob_subscr_pi_1 <- ggplot(
+  data = d_mob_subscr_pi_plot, 
+  aes(x = Groups, y = `Percentage of Subscription 1`, factor(Groups))
+) + 
+  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Purchase intent level") + # set x axis label
+  scale_x_discrete(limits=c("I do not know",
+                            "1 Not interested at all",
+                            "2 Slightly uninterested",
+                            "3 Neutral",
+                            "4 Interested",
+                            "5 Very interested")) + # rearrange values on x-axis
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Mobility subscription 1 purchase intent") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(axis.text.x = element_text(angle = 90)) # rotates x-axis text by 90 degrees
+
+# display plot
+print(plot_mob_subscr_pi_1)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_EV_adv.png", width = 10, height = 5)
+
+# removal of temporary files
+rm(d_EV_adv_plot)
 
 ######################
 # Q40 EV advantages
