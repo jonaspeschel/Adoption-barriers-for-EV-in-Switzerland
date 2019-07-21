@@ -202,48 +202,6 @@ rm(d_income_melt)
 # Q30, 32, 34, 36, 38 Mobility subscriptions 1, 2, 3, 4, 5 purchase intent
 ######################
 
-# convert data for plotting
-d_mob_subscr_pi_plot <- melt(data = d_mob_subscr_pi, id.vars = "Groups",
-                             measure.vars = c("Subscription 1", 
-                                              "Subscription 2",
-                                              "Subscription 3",
-                                              "Subscription 4",
-                                              "Subscription 5"))
-# plot data
-plot_mob_subscr_pi <- ggplot(
-  data = d_mob_subscr_pi_plot, 
-  aes(x = variable, y = `Groups`, fill = variable, factor(variable))
-) + 
-  geom_count(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
-  xlab("Subscriptions") + # set x axis label
-  scale_x_discrete(limits=c("Subscription 1",
-                            "Subscription 2",
-                            "Subscription 3",
-                            "Subscription 4",
-                            "Subscription 5")) + # rearrange values on x-axis
-  scale_y_discrete(limits=c("I do not know",
-                            "1 Not interested at all",
-                            "2 Slightly uninterested",
-                            "3 Neutral",
-                            "4 Interested",
-                            "5 Very interested")) + # rearrange values on y-axis
-  ylab("Relative answer share") + # set y axis label
-  ggtitle("MAAS subscriptions purchase intent") + # set title
-  scale_fill_brewer(palette = "Blues") + # set color pattern
-  theme(axis.text.x = element_text(angle = 90)) # rotates x-axis text by 90 degrees
-
-# display plot
-print(plot_mob_subscr_pi)
-dev.off() # removes displayed graphic
-
-# save plot in file
-ggsave("images/plot_mob_subscr_pi.png", width = 10, height = 5)
-
-# removal of temporary files
-rm(d_mob_subscr_pi_plot,
-   plot_mob_subscr_pi)
-# end of old stuff
-
 # Convert data for plotting
 d_mob_subscr_pi_plot <- melt(data = d_mob_subscr_pi, id.vars = "Groups",
                              measure.vars = c("Percentage of Subscription 1"))
@@ -251,18 +209,18 @@ d_mob_subscr_pi_plot$value <- d_mob_subscr_pi_plot$value*100
 
 # test without melt
 d_mob_subscr_pi_plot <- d_mob_subscr_pi
-d_mob_subscr_pi_plot$`Percentage of Subscription 1` <- d_mob_subscr_pi_plot$`Percentage of Subscription 1`*100
-d_mob_subscr_pi_plot$`Percentage of Subscription 2` <- d_mob_subscr_pi_plot$`Percentage of Subscription 2`*100
-d_mob_subscr_pi_plot$`Percentage of Subscription 3` <- d_mob_subscr_pi_plot$`Percentage of Subscription 3`*100
-d_mob_subscr_pi_plot$`Percentage of Subscription 4` <- d_mob_subscr_pi_plot$`Percentage of Subscription 4`*100
-d_mob_subscr_pi_plot$`Percentage of Subscription 5` <- d_mob_subscr_pi_plot$`Percentage of Subscription 5`*100
+d_mob_subscr_pi_plot$`Percentage of Subscription 1` <- round(d_mob_subscr_pi_plot$`Percentage of Subscription 1`*100, digits=1)
+d_mob_subscr_pi_plot$`Percentage of Subscription 2` <- round(d_mob_subscr_pi_plot$`Percentage of Subscription 2`*100, digits=1)
+d_mob_subscr_pi_plot$`Percentage of Subscription 3` <- round(d_mob_subscr_pi_plot$`Percentage of Subscription 3`*100, digits=1)
+d_mob_subscr_pi_plot$`Percentage of Subscription 4` <- round(d_mob_subscr_pi_plot$`Percentage of Subscription 4`*100, digits=1)
+d_mob_subscr_pi_plot$`Percentage of Subscription 5` <- round(d_mob_subscr_pi_plot$`Percentage of Subscription 5`*100, digits=1)
 
 # plot data
 plot_mob_subscr_pi_1 <- ggplot(
   data = d_mob_subscr_pi_plot, 
   aes(x = Groups, y = `Percentage of Subscription 1`, factor(Groups))
 ) + 
-  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
   xlab("Purchase intent level") + # set x axis label
   scale_x_discrete(limits=c("I do not know",
                             "1 Not interested at all",
@@ -270,20 +228,149 @@ plot_mob_subscr_pi_1 <- ggplot(
                             "3 Neutral",
                             "4 Interested",
                             "5 Very interested")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Subscription 1`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
   ylab("Percentage of total") + # set y axis label
   ggtitle("Mobility subscription 1 purchase intent") + # set title
   scale_fill_brewer(palette = "Blues") + # set color pattern
-  theme(axis.text.x = element_text(angle = 90)) # rotates x-axis text by 90 degrees
+  theme(text = element_text(size=18), # change font size to 20
+    axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+plot_mob_subscr_pi_2 <- ggplot(
+  data = d_mob_subscr_pi_plot, 
+  aes(x = Groups, y = `Percentage of Subscription 2`, factor(Groups))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Purchase intent level") + # set x axis label
+  scale_x_discrete(limits=c("I do not know",
+                            "1 Not interested at all",
+                            "2 Slightly uninterested",
+                            "3 Neutral",
+                            "4 Interested",
+                            "5 Very interested")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Subscription 2`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Mobility subscription 2 purchase intent") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+plot_mob_subscr_pi_3 <- ggplot(
+  data = d_mob_subscr_pi_plot, 
+  aes(x = Groups, y = `Percentage of Subscription 3`, factor(Groups))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Purchase intent level") + # set x axis label
+  scale_x_discrete(limits=c("I do not know",
+                            "1 Not interested at all",
+                            "2 Slightly uninterested",
+                            "3 Neutral",
+                            "4 Interested",
+                            "5 Very interested")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Subscription 3`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Mobility subscription 3 purchase intent") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+plot_mob_subscr_pi_4 <- ggplot(
+  data = d_mob_subscr_pi_plot, 
+  aes(x = Groups, y = `Percentage of Subscription 4`, factor(Groups))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Purchase intent level") + # set x axis label
+  scale_x_discrete(limits=c("I do not know",
+                            "1 Not interested at all",
+                            "2 Slightly uninterested",
+                            "3 Neutral",
+                            "4 Interested",
+                            "5 Very interested")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Subscription 4`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Mobility subscription 4 purchase intent") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+plot_mob_subscr_pi_5 <- ggplot(
+  data = d_mob_subscr_pi_plot, 
+  aes(x = Groups, y = `Percentage of Subscription 5`, factor(Groups))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Purchase intent level") + # set x axis label
+  scale_x_discrete(limits=c("I do not know",
+                            "1 Not interested at all",
+                            "2 Slightly uninterested",
+                            "3 Neutral",
+                            "4 Interested",
+                            "5 Very interested")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Subscription 5`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Mobility subscription 5 purchase intent") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
 
 # display plot
 print(plot_mob_subscr_pi_1)
 dev.off() # removes displayed graphic
-
 # save plot in file
-ggsave("images/plot_EV_adv.png", width = 10, height = 5)
+ggsave("images/plot_mob_subscr_pi_1.png", width = 10, height = 8)
+
+# display plot
+print(plot_mob_subscr_pi_2)
+dev.off() # removes displayed graphic
+# save plot in file
+ggsave("images/plot_mob_subscr_pi_2.png", width = 10, height = 8)
+
+# display plot
+print(plot_mob_subscr_pi_3)
+dev.off() # removes displayed graphic
+# save plot in file
+ggsave("images/plot_mob_subscr_pi_3.png", width = 10, height = 8)
+
+# display plot
+print(plot_mob_subscr_pi_4)
+dev.off() # removes displayed graphic
+# save plot in file
+ggsave("images/plot_mob_subscr_pi_4.png", width = 10, height = 8)
+
+# display plot
+print(plot_mob_subscr_pi_5)
+dev.off() # removes displayed graphic
+# save plot in file
+ggsave("images/plot_mob_subscr_pi_5.png", width = 10, height = 8)
+
 
 # removal of temporary files
-rm(d_EV_adv_plot)
+rm(d_mob_subscr_pi_plot,
+   plot_mob_subscr_pi_1,
+   plot_mob_subscr_pi_2,
+   plot_mob_subscr_pi_3,
+   plot_mob_subscr_pi_4,
+   plot_mob_subscr_pi_5
+   )
 
 ######################
 # Q40 EV advantages
@@ -298,7 +385,7 @@ plot_EV_adv <- ggplot(
   data = d_EV_adv_plot, 
   aes(x = `EV advantages groups`, y = `Percentage of Survey`, factor(`EV advantages groups`))
 ) + 
-  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
   xlab("EV advantages choices") + # set x axis label
   scale_x_discrete(limits=c("Environmental impact",
                             "Little noise",
@@ -337,7 +424,7 @@ d_EV_disadv_plot <- ggplot(
   data = d_EV_disadv_plot, 
   aes(x = `EV disadvantages groups`, y = `Percentage of Survey`, factor(`EV disadvantages groups`))
 ) + 
-  geom_bar(colour="black", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
   xlab("EV disadvantages choices") + # set x axis label
   scale_x_discrete(limits=c("Battery range",
                             "Charging time",
