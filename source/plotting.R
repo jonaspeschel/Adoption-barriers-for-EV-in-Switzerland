@@ -178,17 +178,197 @@ rm(d_income_plot,
 # Q12 EV driving experience
 ######################
 
+# Convert data for plotting
+d_EV_experience_plot <- d_EV_experience
+d_EV_experience_plot$`Percentage of Survey` <- round(d_EV_experience_plot$`Percentage of Survey`*100, digits = 1)
+
+# plot data
+plot_EV_experience <- ggplot(
+  data = d_EV_experience_plot, 
+  aes(x = `EV experience Groups`, y = `Percentage of Survey`, factor(`EV experience Groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("EV experience choices") + # set x axis label
+  scale_x_discrete(limits=c("Electric car",
+                            "None",
+                            "Hybrid car: Pure hybrid",
+                            "Electric bicycle",
+                            "Hybrid car: Plug-in hybrid",
+                            "Electric scooter",
+                            "Hybrid car: Range Extender vehicle",
+                            "Electric motorcycle",
+                            "Other",
+                            "Don't know")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Survey`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("EV experience share of choices") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+
+# display plot
+print(plot_EV_experience)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_EV_experience.png", width = 10, height = 10)
+
+# removal of temporary files
+rm(d_EV_experience_plot,
+   plot_EV_experience)
+
 ######################
 # Q14 EV use
 ######################
+
+# Convert data for plotting
+d_EV_use_plot <- d_EV_use
+d_EV_use_plot$`Percentage of Survey` <- round(d_EV_use_plot$`Percentage of Survey`*100, digits = 1)
+
+# plot data
+plot_EV_use <- ggplot(
+  data = d_EV_use_plot, 
+  aes(x = `EV use Groups`, y = `Percentage of Survey`, factor(`EV experience Groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("EV use choices") + # set x axis label
+  scale_x_discrete(limits=c(
+    "None",
+    "Electric bicycle",
+    "Electric car", 
+    "Hybrid car: Pure hybrid",
+    "Other",
+    "Hybrid car: Plug-in hybrid",
+    "Hybrid car: Range Extender vehicle",
+    "Electric motorcycle",
+    "Electric scooter",
+    "Don't know")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Survey`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("EV use share of choices") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+
+# display plot
+print(plot_EV_use)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_EV_use.png", width = 10, height = 10)
+
+# removal of temporary files
+rm(d_EV_use_plot,
+   plot_EV_use)
 
 ######################
 # Q15 mobility usage
 ######################
 
+# Convert data for plotting
+d_mobility_usage_plot <- d_mobility_usage
+d_mobility_usage_plot$`Percentage of Survey` <- round(d_mobility_usage_plot$`Percentage of Survey`*100, digits = 1)
+
+# plot data
+plot_mobility_usage <- ggplot(
+  data = d_mobility_usage_plot, 
+  aes(x = `Mobility usage Groups`, y = `Percentage of Survey`, factor(`Mobility usage Groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Mobility usage choices") + # set x axis label
+  scale_x_discrete(limits=c(
+    "Taxi (eg regular taxi, Mytaxi, Uber, Lyft)",
+    "Renting a car (eg Avis, Europcar, Sixt)",
+    "Leasing a car",
+    "Renting a bike",
+    "Car sharing (eg Mobility, Sharoo)",
+    "Combined Mobility Subscription (eg SBB Green Class)",
+    "Bike sharing (eg, Publibike, Sharoo)",
+    "None",
+    "Car Mobility Subscription (eg Carvolution, Juicar, Upto)",
+    "Other",
+    "I do not know")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Survey`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Mobility usage share of choices") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+
+# display plot
+print(plot_mobility_usage)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_mobility_usage.png", width = 10, height = 10)
+
+# removal of temporary files
+rm(d_mobility_usage_plot,
+   plot_mobility_usage)
+
 ######################
 # Q16 Public transport subscriptions
 ######################
+
+# Convert data for plotting
+d_pt_subscr_plot <- d_pt_subscr
+d_pt_subscr_plot$`Percentage of Survey` <- round(d_pt_subscr_plot$`Percentage of Survey`*100, digits = 1)
+
+# plot data
+plot_pt_subscr <- ggplot(
+  data = d_pt_subscr_plot, 
+  aes(x = `PT subscription Groups`, y = `Percentage of Survey`, factor(`PT subscription Groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Public transport subscription ownership choices") + # set x axis label
+  scale_x_discrete(limits=c(
+    "Half-Fare Card",
+    "None",
+    "General subscription (valid at any time, all-of Switzerland)",
+    "Regional ticket (eg several zones in the canton of Zurich)",
+    "Seven25 (replaces Track 7 since 01.05.2019)",
+    "City ticket (eg City of Zurich)",
+    "Point-to-point travel card (eg Zurich - Schaffhausen",
+    "Track 7 (replaced by Seven25 since 01.05.2019)",
+    "Other subscription",
+    "I do not know")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Survey`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Public transport subscription share of mentionings") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+
+# display plot
+print(plot_pt_subscr)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_pt_subscr.png", width = 10, height = 10)
+
+# removal of temporary files
+rm(d_pt_subscr_plot,
+   plot_pt_subscr)
 
 ######################
 # Q17-19 mobility spending
