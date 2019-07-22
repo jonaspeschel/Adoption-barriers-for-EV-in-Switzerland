@@ -374,6 +374,90 @@ rm(d_pt_subscr_plot,
 # Q17-19 mobility spending
 ######################
 
+
+# Convert data for plotting
+d_mobility_spend_plot <- d_mobility_spend
+d_mobility_spend_plot$`Percentage of public transport mobility spending` <- round(d_mobility_spend_plot$`Percentage of public transport mobility spending`*100, digits = 1)
+d_mobility_spend_plot$`Percentage of Ccr mobility spending` <- round(d_mobility_spend_plot$`Percentage of Ccr mobility spending`*100, digits = 1)
+
+# plot data
+plot_mobility_spend_pt <- ggplot(
+  data = d_mobility_spend_plot, 
+  aes(x = `Transport spending groups`, y = `Percentage of public transport mobility spending`, factor(`Transport spending groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("EV ranges") + # set x axis label
+  scale_x_discrete(limits=c(
+    "100 CHF or less",
+    "101 to 200 CHF",
+    "201 to 300 CHF",
+    "301 to 400 CHF",
+    "401 to 500 CHF",
+    "501 to 600 CHF",
+    "601 to 700 CHF",
+    "701 to 800 CHF",
+    "801 to 900 CHF",
+    "901 to 1'000 CHF")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of public transport mobility spending`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Public transport mobility spending") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+plot_mobility_spend_car <- ggplot(
+  data = d_mobility_spend_plot, 
+  aes(x = `Transport spending groups`, y = `Percentage of Ccr mobility spending`, factor(`Transport spending groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("EV ranges") + # set x axis label
+  scale_x_discrete(limits=c(
+    "100 CHF or less",
+    "101 to 200 CHF",
+    "201 to 300 CHF",
+    "301 to 400 CHF",
+    "401 to 500 CHF",
+    "501 to 600 CHF",
+    "601 to 700 CHF",
+    "701 to 800 CHF",
+    "801 to 900 CHF",
+    "901 to 1'000 CHF")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Ccr mobility spending`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Car mobility spending") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+
+# display plot
+print(plot_mobility_spend_pt)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_mobility_spend_pt.png", width = 10, height = 6)
+
+# display plot
+print(plot_mobility_spend_car)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_mobility_spend_car.png", width = 10, height = 6)
+
+# removal of temporary files
+rm(d_mobility_spend_plot,
+   plot_mobility_spend_pt,
+   plot_mobility_spend_pt)
+
+
 ######################
 # Q24 # EV battery range for commutes
 ######################
