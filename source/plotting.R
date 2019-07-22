@@ -378,17 +378,207 @@ rm(d_pt_subscr_plot,
 # Q24 # EV battery range for commutes
 ######################
 
+# Convert data for plotting
+d_ev_range_commute_plot <- d_ev_range_commute
+d_ev_range_commute_plot$`Percentage of Survey` <- round(d_ev_range_commute_plot$`Percentage of Survey`*100, digits = 1)
+
+# plot data
+plot_ev_range_commute <- ggplot(
+  data = d_ev_range_commute_plot, 
+  aes(x = `PT subscription Groups`, y = `Percentage of Survey`, factor(`PT subscription Groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("EV ranges") + # set x axis label
+  scale_x_discrete(limits=c(
+    "50 km",
+    "100 km",
+    "150 km",
+    "200 km",
+    "250 km",
+    "300 km",
+    "350 km",
+    "400 km",
+    "450 km",
+    "500 km",
+    "More than 500 km",
+    "I do not know")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Survey`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Electric vehicle range requirement for commuting") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+
+# display plot
+print(plot_ev_range_commute)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_ev_range_commute.png", width = 10, height = 6)
+
+# removal of temporary files
+rm(d_ev_range_commute_plot,
+   plot_ev_range_commute)
+
+
 ######################
 # Q25 # EV battery range for all ranges
 ######################
+
+# Convert data for plotting
+d_ev_range_all_plot <- d_ev_range_all
+d_ev_range_all_plot$`Percentage of Survey` <- round(d_ev_range_all_plot$`Percentage of Survey`*100, digits = 1)
+
+# plot data
+plot_ev_range_all <- ggplot(
+  data = d_ev_range_all_plot, 
+  aes(x = `PT subscription Groups`, y = `Percentage of Survey`, factor(`PT subscription Groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("EV ranges") + # set x axis label
+  scale_x_discrete(limits=c(
+    "50 km",
+    "100 km",
+    "150 km",
+    "200 km",
+    "250 km",
+    "300 km",
+    "350 km",
+    "400 km",
+    "450 km",
+    "500 km",
+    "More than 500 km",
+    "I do not know")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Survey`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Electric vehicle range requirement for all trips") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+
+# display plot
+print(plot_ev_range_all)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_ev_range_all.png", width = 10, height = 6)
+
+# removal of temporary files
+rm(d_ev_range_all_plot,
+   plot_ev_range_all)
+
 
 ######################
 # Q27 Mobility subscription interest
 ######################
 
+
+# Convert data for plotting
+d_mob_subscr_inter_plot <- d_mob_subscr_inter
+d_mob_subscr_inter_plot$`Percentage of Survey` <- round(d_mob_subscr_inter_plot$`Percentage of Survey`*100, digits = 1)
+
+# plot data
+plot_mob_subscr_inter <- ggplot(
+  data = d_mob_subscr_inter_plot, 
+  aes(x = `Groups`, y = `Percentage of Survey`, factor(`Groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Interest levels") + # set x axis label
+  scale_x_discrete(limits=c(
+    "5 Very interested",
+    "4 Interested",
+    "3 Neutral",
+    "2 Slightly uninterested",
+    "1 Not interested at all",
+    "I do not know")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Survey`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Mobilility subscription interest") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+
+# display plot
+print(plot_mob_subscr_inter)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_mob_subscr_inter.png", width = 10, height = 6)
+
+# removal of temporary files
+rm(d_mob_subscr_inter_plot,
+   plot_mob_subscr_inter)
+
+
 ######################
 # Q28 Mobility subscription willingness to pay
 ######################
+
+# Convert data for plotting
+d_mob_subscr_wtp_plot <- d_mob_subscr_wtp
+d_mob_subscr_wtp_plot$`Percentage of Survey` <- round(d_mob_subscr_wtp_plot$`Percentage of Survey`*100, digits = 1)
+
+# plot data
+plot_mob_subscr_wtp <- ggplot(
+  data = d_mob_subscr_wtp_plot, 
+  aes(x = `Mobility subscription WTP Groups`, y = `Percentage of Survey`, factor(`Mobility subscription WTP Groups`))
+) + 
+  geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
+  xlab("Payment levels") + # set x axis label
+  scale_x_discrete(limits=c(
+    "100 CHF or less",
+    "101 to 200 CHF",
+    "201 to 400 CHF",
+    "301 to 400 CHF",
+    "401 to 600 CHF",
+    "601 to 800 CHF",
+    "601 to 700 CHF",
+    "801 to 1'000 CHF",
+    "1'001 to 1'200 CHF",
+    "1'201 to 1'400 CHF",
+    "1'001 to 1'100 CHF",
+    "1'101 to 1'200 CHF",
+    "1'201 to 1'300 CHF",
+    "1'301 to 1'400 CHF",
+    "More than 1'400 CHF")) + # rearrange values on x-axis
+  geom_text(aes(label= `Percentage of Survey`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
+  ylab("Percentage of total") + # set y axis label
+  ggtitle("Mobility subscription willingness to pay") + # set title
+  scale_fill_brewer(palette = "Blues") + # set color pattern
+  theme(text = element_text(size=18), # change font size to 20
+        axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
+        panel.grid.major = element_blank(), # remove background grid
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) # add axis line
+
+
+# display plot
+print(plot_mob_subscr_wtp)
+dev.off() # removes displayed graphic
+
+# save plot in file
+ggsave("images/plot_mob_subscr_wtp.png", width = 10, height = 10)
+
+# removal of temporary files
+rm(d_mob_subscr_wtp_plot,
+   plot_mob_subscr_wtp)
+
 
 ######################
 # Q30, 32, 34, 36, 38 Mobility subscriptions 1, 2, 3, 4, 5 purchase intent
