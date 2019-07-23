@@ -386,7 +386,7 @@ plot_mobility_spend_pt <- ggplot(
   aes(x = `Transport spending groups`, y = `Percentage of public transport mobility spending`, factor(`Transport spending groups`))
 ) + 
   geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
-  xlab("EV ranges") + # set x axis label
+  xlab("Monthly spending") + # set x axis label
   scale_x_discrete(limits=c(
     "100 CHF or less",
     "101 to 200 CHF",
@@ -414,7 +414,7 @@ plot_mobility_spend_car <- ggplot(
   aes(x = `Transport spending groups`, y = `Percentage of Ccr mobility spending`, factor(`Transport spending groups`))
 ) + 
   geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
-  xlab("EV ranges") + # set x axis label
+  xlab("Monthly spending") + # set x axis label
   scale_x_discrete(limits=c(
     "100 CHF or less",
     "101 to 200 CHF",
@@ -602,7 +602,7 @@ print(plot_mob_subscr_inter)
 dev.off() # removes displayed graphic
 
 # save plot in file
-ggsave("images/plot_mob_subscr_inter.png", width = 10, height = 6)
+ggsave("images/plot_mob_subscr_inter.png", width = 10, height = 10)
 
 # removal of temporary files
 rm(d_mob_subscr_inter_plot,
@@ -802,31 +802,31 @@ plot_mob_subscr_pi_5 <- ggplot(
 print(plot_mob_subscr_pi_1)
 dev.off() # removes displayed graphic
 # save plot in file
-ggsave("images/plot_mob_subscr_pi_1.png", width = 10, height = 8)
+ggsave("images/plot_mob_subscr_pi_1.png", width = 20, height = 8)
 
 # display plot
 print(plot_mob_subscr_pi_2)
 dev.off() # removes displayed graphic
 # save plot in file
-ggsave("images/plot_mob_subscr_pi_2.png", width = 10, height = 8)
+ggsave("images/plot_mob_subscr_pi_2.png", width = 20, height = 8)
 
 # display plot
 print(plot_mob_subscr_pi_3)
 dev.off() # removes displayed graphic
 # save plot in file
-ggsave("images/plot_mob_subscr_pi_3.png", width = 10, height = 8)
+ggsave("images/plot_mob_subscr_pi_3.png", width = 20, height = 8)
 
 # display plot
 print(plot_mob_subscr_pi_4)
 dev.off() # removes displayed graphic
 # save plot in file
-ggsave("images/plot_mob_subscr_pi_4.png", width = 10, height = 8)
+ggsave("images/plot_mob_subscr_pi_4.png", width = 20, height = 8)
 
 # display plot
 print(plot_mob_subscr_pi_5)
 dev.off() # removes displayed graphic
 # save plot in file
-ggsave("images/plot_mob_subscr_pi_5.png", width = 10, height = 8)
+ggsave("images/plot_mob_subscr_pi_5.png", width = 20, height = 8)
 
 
 # removal of temporary files
@@ -885,20 +885,20 @@ rm(d_EV_adv_plot,
    plot_EV_adv)
 
 ######################
-# Q41 EV disadvantages
+# Q41 EV barriers
 ######################
 
 # Convert data for plotting
-d_EV_disadv_plot <- d_EV_disadv
-d_EV_disadv_plot$`Percentage of Survey` <- round(d_EV_disadv_plot$`Percentage of Survey`*100, digits = 1)
+d_EV_barriers_plot <- d_EV_disadv
+d_EV_barriers_plot$`Percentage of Survey` <- round(d_EV_barriers_plot$`Percentage of Survey`*100, digits = 1)
 
 # plot data
-plot_EV_disadv <- ggplot(
-  data = d_EV_disadv_plot, 
+plot_EV_barriers <- ggplot(
+  data = d_EV_barriers_plot, 
   aes(x = `EV disadvantages groups`, y = `Percentage of Survey`, factor(`EV disadvantages groups`))
 ) + 
   geom_bar(colour="black", fill = "Blue", stat="identity", position = position_dodge()) + # set black outline of bars, height of bars, position dodge
-  xlab("EV disadvantages choices") + # set x axis label
+  xlab("EV barrier choices") + # set x axis label
   scale_x_discrete(limits=c("Battery range",
                             "Charging time",
                             "High purchasing price of the vehicle",
@@ -910,7 +910,7 @@ plot_EV_disadv <- ggplot(
                             "Other")) + # rearrange values on x-axis
   geom_text(aes(label= `Percentage of Survey`), position = position_dodge(width=0.9), vjust = -0.25) + # Add value on top of bars
   ylab("Percentage of total") + # set y axis label
-  ggtitle("EV disadvantages share of choices") + # set title
+  ggtitle("EV barrier share of choices") + # set title
   scale_fill_brewer(palette = "Blues") + # set color pattern
   theme(text = element_text(size=18), # change font size to 20
         axis.text.x = element_text(angle = 90), # rotates x-axis text by 90 degrees
@@ -921,12 +921,12 @@ plot_EV_disadv <- ggplot(
 
 
 # display plot
-print(plot_EV_disadv)
+print(plot_EV_barriers)
 dev.off() # removes displayed graphic
 
 # save plot in file
-ggsave("images/plot_EV_disadv.png", width = 10, height = 10)
+ggsave("images/plot_EV_barriers.png", width = 10, height = 10)
 
 # removal of temporary files
-rm(d_EV_disadv_plot,
-   plot_EV_disadv)
+rm(d_EV_barriers_plot,
+   plot_EV_barriers)
